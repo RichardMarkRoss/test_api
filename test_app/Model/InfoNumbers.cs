@@ -6,6 +6,6 @@ namespace test_app.Model
     {
         [Key]
         public int Id { get; set; }
-        public int Fact { get; set; }
+        public string Fact { get; set; }
     }
 }

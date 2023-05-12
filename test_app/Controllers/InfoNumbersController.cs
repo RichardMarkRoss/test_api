@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using test_app.Data;
 using test_app.Model;
 
-namespace test_app.Controllers
+namespace test_apI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
