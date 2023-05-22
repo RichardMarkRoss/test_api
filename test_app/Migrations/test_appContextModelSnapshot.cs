@@ -30,8 +30,9 @@ namespace test_app.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Fact")
-                        .HasColumnType("int");
+                    b.Property<string>("Fact")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

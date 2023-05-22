@@ -9,10 +9,10 @@ using test_app.Data;
 
 #nullable disable
 
-namespace test_app.Migrations
+namespace test_api.Migrations
 {
     [DbContext(typeof(test_appContext))]
-    [Migration("20230512134130_init")]
+    [Migration("20230512142816_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -33,8 +33,9 @@ namespace test_app.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Fact")
-                        .HasColumnType("int");
+                    b.Property<string>("Fact")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
