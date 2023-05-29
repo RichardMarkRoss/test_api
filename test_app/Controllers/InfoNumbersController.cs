@@ -12,55 +12,55 @@ namespace test_api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class InfoNumbersController : ControllerBase
     {
         private readonly test_appContext _context;
 
-        public UsersController(test_appContext context)
+        public InfoNumbersController(test_appContext context)
         {
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/InfoNumbers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<InfoNumbers>>> GetInfoNumbers()
         {
-          if (_context.Users == null)
+          if (_context.InfoNumbers == null)
           {
               return NotFound();
           }
-            return await _context.Users.ToListAsync();
+            return await _context.InfoNumbers.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/InfoNumbers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Users>> GetUsers(int id)
+        public async Task<ActionResult<InfoNumbers>> GetInfoNumbers(int id)
         {
-          if (_context.Users == null)
+          if (_context.InfoNumbers == null)
           {
               return NotFound();
           }
-            var users = await _context.Users.FindAsync(id);
+            var infoNumbers = await _context.InfoNumbers.FindAsync(id);
 
-            if (users == null)
+            if (infoNumbers == null)
             {
                 return NotFound();
             }
 
-            return users;
+            return infoNumbers;
         }
 
-        // PUT: api/Users/5
+        // PUT: api/InfoNumbers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsers(int id, Users users)
+        public async Task<IActionResult> PutInfoNumbers(int id, InfoNumbers infoNumbers)
         {
-            if (id != users.UserId)
+            if (id != infoNumbers.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(users).State = EntityState.Modified;
+            _context.Entry(infoNumbers).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace test_api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsersExists(id))
+                if (!InfoNumbersExists(id))
                 {
                     return NotFound();
                 }
@@ -81,44 +81,44 @@ namespace test_api.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/InfoNumbers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Users>> PostUsers(Users users)
+        public async Task<ActionResult<InfoNumbers>> PostInfoNumbers(InfoNumbers infoNumbers)
         {
-          if (_context.Users == null)
+          if (_context.InfoNumbers == null)
           {
-              return Problem("Entity set 'test_appContext.Users'  is null.");
+              return Problem("Entity set 'test_appContext.InfoNumbers'  is null.");
           }
-            _context.Users.Add(users);
+            _context.InfoNumbers.Add(infoNumbers);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsers", new { id = users.UserId }, users);
+            return CreatedAtAction("GetInfoNumbers", new { id = infoNumbers.Id }, infoNumbers);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/InfoNumbers/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUsers(int id)
+        public async Task<IActionResult> DeleteInfoNumbers(int id)
         {
-            if (_context.Users == null)
+            if (_context.InfoNumbers == null)
             {
                 return NotFound();
             }
-            var users = await _context.Users.FindAsync(id);
-            if (users == null)
+            var infoNumbers = await _context.InfoNumbers.FindAsync(id);
+            if (infoNumbers == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(users);
+            _context.InfoNumbers.Remove(infoNumbers);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool UsersExists(int id)
+        private bool InfoNumbersExists(int id)
         {
-            return (_context.Users?.Any(e => e.UserId == id)).GetValueOrDefault();
+            return (_context.InfoNumbers?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
